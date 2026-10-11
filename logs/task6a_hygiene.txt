@@ -1,0 +1,42 @@
+$ python -m eval.aggregate runs/pilotA-stub-20261008T162923Z_runC
+wrote runs/pilotA-stub-20261008T162923Z_runC/results/summary.md, cells.csv, cells_sensitivity.csv, closed_book_correct.txt, hygiene_by_cell.csv
+[exit code 0]
+$ python -m eval.plot runs/pilotA-stub-20261008T162923Z_runC
+wrote runs/pilotA-stub-20261008T162923Z_runC/results/accuracy_vs_T.png
+[exit code 0]
+
+$ sed -n '/## Parse failures and/,$p' runs/pilotA-stub-20261008T162923Z_runC/results/summary.md
+## Parse failures and 'unsure' answers by (N, T)
+
+Rates over records that ran (records not fitting the context window are counted separately). Closed-book is round 0.
+
+| N | T | n | not_fit | parse_fail | parse_fail_rate | said_unsure | said_unsure_rate |
+|---|---|---|---|---|---|---|---|
+| closed_book | 0 | 20 | 0 | 0 | 0.0% | 0 | 0.0% |
+| 0 | 1 | 20 | 0 | 0 | 0.0% | 0 | 0.0% |
+| 0 | 2 | 20 | 0 | 0 | 0.0% | 0 | 0.0% |
+| 0 | 3 | 20 | 0 | 0 | 0.0% | 0 | 0.0% |
+| 0 | 4 | 20 | 0 | 0 | 0.0% | 0 | 0.0% |
+| 0 | 5 | 20 | 0 | 0 | 0.0% | 0 | 0.0% |
+| 0 | 6 | 20 | 0 | 0 | 0.0% | 0 | 0.0% |
+| 4 | 1 | 20 | 0 | 0 | 0.0% | 0 | 0.0% |
+| 4 | 2 | 20 | 0 | 0 | 0.0% | 0 | 0.0% |
+| 4 | 3 | 20 | 0 | 0 | 0.0% | 0 | 0.0% |
+| 4 | 4 | 20 | 0 | 0 | 0.0% | 0 | 0.0% |
+| 4 | 5 | 20 | 0 | 0 | 0.0% | 0 | 0.0% |
+| 4 | 6 | 20 | 0 | 0 | 0.0% | 0 | 0.0% |
+$ cat runs/pilotA-stub-20261008T162923Z_runC/results/hygiene_by_cell.csv
+N,T,n,not_fit,parse_fail,parse_fail_rate,said_unsure,said_unsure_rate
+closed_book,0,20,0,0,0.0,0,0.0
+0,1,20,0,0,0.0,0,0.0
+0,2,20,0,0,0.0,0,0.0
+0,3,20,0,0,0.0,0,0.0
+0,4,20,0,0,0.0,0,0.0
+0,5,20,0,0,0.0,0,0.0
+0,6,20,0,0,0.0,0,0.0
+4,1,20,0,0,0.0,0,0.0
+4,2,20,0,0,0.0,0,0.0
+4,3,20,0,0,0.0,0,0.0
+4,4,20,0,0,0.0,0,0.0
+4,5,20,0,0,0.0,0,0.0
+4,6,20,0,0,0.0,0,0.0

@@ -1,0 +1,55 @@
+$ python -m pytest tests/ -q
+...............................................                          [100%]
+47 passed in 0.33s
+[exit code 0]
+
+$ python -m pytest tests/ -q --collect-only
+tests/test_context.py::test_round0_is_bare_question
+tests/test_context.py::test_round_block_matches_simrag_template_with_empty_query
+tests/test_context.py::test_contexts_accumulate_as_prefixes
+tests/test_context.py::test_empty_round_appends_nothing
+tests/test_context.py::test_n0_prompts_byte_identical_from_round_g_onward_via_plan
+tests/test_context.py::test_n4_prompts_strictly_grow_every_round
+tests/test_context.py::test_paragraph_order_follows_position
+tests/test_metrics.py::test_em[The Beatles-beatles-1]
+tests/test_metrics.py::test_em[Beatles.-the Beatles-1]
+tests/test_metrics.py::test_em[Paul McCartney-McCartney-0]
+tests/test_metrics.py::test_f1_partial_and_yes_no_rule
+tests/test_metrics.py::test_parse_standard
+tests/test_metrics.py::test_parse_blank_lines_between_fields
+tests/test_metrics.py::test_parse_failure_gives_empty_answer_not_placeholder
+tests/test_metrics.py::test_unsure_detection
+tests/test_pool_and_sample.py::test_corpus_dedups_titles_and_counts_slots
+tests/test_pool_and_sample.py::test_corpus_reports_title_text_conflicts
+tests/test_pool_and_sample.py::test_fast_bm25_equals_rank_bm25
+tests/test_pool_and_sample.py::test_top_k_excludes_gold_and_zero_scores_and_ranks_from_one
+tests/test_pool_and_sample.py::test_select_sample_stratified_pilot_prefix_and_counterbalanced
+tests/test_pool_and_sample.py::test_select_sample_excludes_items_without_two_gold_in_context
+tests/test_prompts.py::test_verbatim_matches_simrag_source
+tests/test_prompts.py::test_noabstain_removes_exactly_one_sentence
+tests/test_prompts.py::test_registry_has_ids_and_hashes
+tests/test_schedule.py::test_derive_seed_deterministic_and_part_sensitive
+tests/test_schedule.py::test_gold_one_per_round_then_none
+tests/test_schedule.py::test_gold_order_respected
+tests/test_schedule.py::test_gold_never_dropped_t_max_below_g_rejected
+tests/test_schedule.py::test_draw_shape_and_no_duplicates
+tests/test_schedule.py::test_draw_n0_is_empty_every_round
+tests/test_schedule.py::test_draw_deterministic_and_seed_sensitive
+tests/test_schedule.py::test_draw_independent_of_pool_input_order
+tests/test_schedule.py::test_draw_nested_across_n
+tests/test_schedule.py::test_pool_too_small_raises
+tests/test_schedule.py::test_rank_band_enforced
+tests/test_schedule.py::test_draws_uniform_over_rank_band
+tests/test_schedule.py::test_shuffle_round_is_seeded_permutation
+tests/test_schedule.py::test_plan_structure
+tests/test_schedule.py::test_plan_every_gold_exactly_once_and_cumulative_after_g
+tests/test_schedule.py::test_plan_no_distractor_is_gold
+tests/test_schedule.py::test_plan_deterministic
+tests/test_schedule.py::test_plan_n0_has_only_gold
+tests/test_schedule.py::test_plan_gold_position_varies_across_questions
+tests/test_schedule.py::test_plan_distractors_nested_across_n_levels
+tests/test_schedule.py::test_assign_flips_balanced_within_each_group
+tests/test_schedule.py::test_assign_flips_deterministic_and_not_trivial
+tests/test_schedule.py::test_assign_flips_independent_of_input_order
+
+47 tests collected in 0.07s

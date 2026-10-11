@@ -1,0 +1,12 @@
+$ sha256sum artifacts/pool.jsonl artifacts/sample.jsonl artifacts/paragraphs.jsonl hotpot_dev_distractor_v1.json
+1b65d61660fc56805d0f6564fbb0db09b0ebab22e8c7343f6be813a02e01f4dd  artifacts/pool.jsonl
+7a8d13398d1e755935905ba9f1fa9cbda710888a2cee8f3f5446c85007ec4023  artifacts/sample.jsonl
+f621f33901ae72a4a980f70a59279ebe14dbd49f3defee0c51ffd18b587a4db1  artifacts/paragraphs.jsonl
+a9b4c5906587ac0d20eb83dcb29d0240e268e342c170f7f22988f59f13fa82c3  hotpot_dev_distractor_v1.json
+
+$ wc -l artifacts/pool.jsonl artifacts/sample.jsonl
+    7405 artifacts/pool.jsonl
+     500 artifacts/sample.jsonl
+    7905 total
+
+python 3.13.16 numpy 2.5.3 rank_bm25 0.2.2 (pip)

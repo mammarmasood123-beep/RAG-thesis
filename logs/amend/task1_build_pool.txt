@@ -1,0 +1,45 @@
+$ python -m data.build_pool --hotpot hotpot_dev_distractor_v1.json --out artifacts/
+========================================================================
+POOL VERIFICATION  (bm25_hotpot_corpus_top50, III.5 answer exclusion)
+========================================================================
+questions in split                : 7405
+paragraph slots (questions x 10)  : 74050
+paragraph slots (actual count)    : 73700
+UNIQUE paragraph titles           : 66581
+  duplicate slots removed         : 7119 (9.7% of slots)
+  titles with >1 distinct text    : 54 (first occurrence kept)
+answer filter                     : normalize_answer on both sides, plain substring, paragraph text only; skipped for yes/no; gold never screened
+pool size / scan cap              : 50 survivors / bm25_rank <= 300
+
+Indexing (title + paragraph text)...
+fast scorer vs rank_bm25.get_scores, max |diff| on 3 queries: 0.00e+00
+Scoring every question...
+
+5 random questions (seed 20261008): survivors after gold + answer exclusion
+  5ab56e085542992aa134a315  [bridge    ] usable=50  removed=  0  max_bm25_rank= 50  filter=on   answer='1967'
+  5a8530cc5542992a431d1aeb  [bridge    ] usable=50  removed=  0  max_bm25_rank= 50  filter=on   answer='Orono'
+  5abe9f7d5542997ec76fd331  [bridge    ] usable=50  removed=  0  max_bm25_rank= 50  filter=on   answer='Swansea City'
+  5a76cb9b55429966f1a36bf2  [bridge    ] usable=50  removed=  0  max_bm25_rank= 50  filter=on   answer='Adam Silver'
+  5a7455eb55429979e2882908  [bridge    ] usable=50  removed=  0  max_bm25_rank= 50  filter=on   answer='The Galtür avalanche'
+
+WHOLE SPLIT (7405 questions)
+  usable candidates (survivors)     : min=0  median=50  questions with < 50: 9  with < 24: 4
+  filter applied / skipped (yes/no) : 6947 / 458
+  candidates removed per question   : mean=2.21  max=300  questions with >=1 removed: 2506
+  questions needing bm25_rank > 50  : 2506  max bm25_rank used: 300
+  shipped-8 recovered in pool       : mean 78.2% after filter (before filter: 85.4%)
+  survivors whose TITLE (not text) contains the answer: 39 (not filtered: spec matches text only)
+  answers normalising to empty string (filter would remove all): ['5ae4988655429970de88d9c1', '5a8b3d795542997f31a41cc1']
+
+STOP: 9 question(s) cannot reach 50 survivors within bm25_rank 300:
+  5a7758895542994aec3b729c  [comparison]  usable=49  removed=251  scanned_to=300  answer='rock'
+  5a86fde6554299211dda2b7f  [bridge]  usable=19  removed=281  scanned_to=300  answer='IT'
+  5a8b3d795542997f31a41cc1  [comparison]  usable=0  removed=300  scanned_to=300  answer='!!!'
+  5abce85755429959677d6b3e  [bridge]  usable=0  removed=300  scanned_to=300  answer='O'
+  5abd0b9a5542996e802b46b7  [bridge]  usable=49  removed=251  scanned_to=300  answer='Ted'
+  5abd5a135542992ac4f3829f  [bridge]  usable=42  removed=258  scanned_to=300  answer='south'
+  5ac508205542994611c8b32e  [bridge]  usable=46  removed=254  scanned_to=300  answer='U.S.'
+  5ae1e1e55542997f29b3c15e  [bridge]  usable=26  removed=274  scanned_to=300  answer='1'
+  5ae4988655429970de88d9c1  [comparison]  usable=0  removed=300  scanned_to=300  answer='The The'
+Pool NOT written.
+[exit code 2, elapsed 141s]

@@ -1,0 +1,24 @@
+$ python -m logs.check_scripts.amend_stop_analysis hotpot_dev_distractor_v1.json artifacts/sample.jsonl
+filtered questions (non-yes/no): 6947
+matcher                            fail <50  past r50  removed mean  removed max   max_bm25 p50/p90/p99/max
+S plain substring (as specified)          9      2506          2.35          300          [50, 55, 80, 300]
+W whole-token (comparison only)           0      2398          1.72          208          [50, 55, 72, 258]
+questions where substring removes MORE than whole-token: 495  (extra removals total: 4402)
+
+failing questions under the specified matcher (S):
+  qid                        type        answer           norm        S cap300  S no cap (surv/scan)  W cap300
+  5a7758895542994aec3b729c   comparison  'rock'           'rock'            49                50/301        50
+  5a86fde6554299211dda2b7f   bridge      'IT'             'it'              19                50/736        50
+  5a8b3d795542997f31a41cc1   comparison  '!!!'            ''                 0               0/63633        50
+  5abce85755429959677d6b3e   bridge      'O'              'o'                0              18/65444        50
+  5abd0b9a5542996e802b46b7   bridge      'Ted'            'ted'             49                50/304        50
+  5abd5a135542992ac4f3829f   bridge      'south'          'south'           42                50/335        50
+  5ac508205542994611c8b32e   bridge      'U.S.'           'us'              46                50/330        50
+  5ae1e1e55542997f29b3c15e   bridge      '1'              '1'               26                50/468        50
+  5ae4988655429970de88d9c1   comparison  'The The'        ''                 0               0/66300        50
+
+failing questions in the study sample: {'5a7758895542994aec3b729c': 'sample-rest', '5ae4988655429970de88d9c1': 'sample-rest'}
+
+answers whose substring removals exceed whole-token removals (top 15, by question count):
+  'american':10, 'director':7, 'german':7, 'seven':4, 'musician':4, 'rock':4, 'singer':4, '4':4, 'band':4, 'three':4, '15':3, 'four':3, 'writer':3, 'london':3, 'new york':3
+[exit code 0, elapsed 130s]

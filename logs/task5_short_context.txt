@@ -1,0 +1,34 @@
+$ python -m logs.check_scripts.short_context hotpot_dev_distractor_v1.json runs/pilotA-stub-20261008T162726Z_runA
+questions with < 10 shipped paragraphs: 60
+  distribution of paragraph counts: {2: 21, 3: 7, 4: 9, 5: 6, 6: 8, 7: 2, 8: 4, 9: 3}
+  gold (2 distinct sf titles) present in context for all of them: True
+short-context questions in the 20-question stub run : []
+short-context questions in the 150 pilot            : ['5ac274fc55429963665199c1']
+short-context questions in the 500 sample           : ['5a78dc4d55429970f5fffdb6', '5a87954f5542996e4f308856', '5a8dfae55542995085b3736b', '5ab67ce2554299710c8d1ead', '5ac274fc55429963665199c1', '5ae0e183554299422ee9953f']
+build_plan on 60 short-context questions x N in {0,1,2,4}: 240 plans OK, 0 errors
+pool sizes for these questions: min=50 max=50
+[exit code 0]
+$ python -m harness.run_expA --config configs/pilot.yaml --backend stub --run_suffix=_pilot150
+[pilotA-stub-20261008T162833Z_pilot150] 150 questions, N=[0, 4], rounds 0..6
+  N=0 done (0s)
+  N=4 done (1s)
+wrote runs/pilotA-stub-20261008T162833Z_pilot150  records=1950  not_fitting=0  status=OK
+  check n0_prompt_identity_violations: 0
+  check n0_output_identity_mismatches: 0
+  check gold_integrity_violations: 0
+[exit code 0]
+
+$ records for the short-context pilot question 5ac274fc55429963665199c1:
+{'arm': 'closed_book', 'N': None} round 0 n_gold_cum 0 n_noise_cum 0 injected [] parse_ok True
+{'arm': 'distractor', 'N': 0} round 1 n_gold_cum 1 n_noise_cum 0 injected [('gold', None)] parse_ok True
+{'arm': 'distractor', 'N': 0} round 2 n_gold_cum 2 n_noise_cum 0 injected [('gold', None)] parse_ok True
+{'arm': 'distractor', 'N': 0} round 3 n_gold_cum 2 n_noise_cum 0 injected [] parse_ok True
+{'arm': 'distractor', 'N': 0} round 4 n_gold_cum 2 n_noise_cum 0 injected [] parse_ok True
+{'arm': 'distractor', 'N': 0} round 5 n_gold_cum 2 n_noise_cum 0 injected [] parse_ok True
+{'arm': 'distractor', 'N': 0} round 6 n_gold_cum 2 n_noise_cum 0 injected [] parse_ok True
+{'arm': 'distractor', 'N': 4} round 1 n_gold_cum 1 n_noise_cum 4 injected [('distractor', 21), ('distractor', 3), ('distractor', 49), ('gold', None), ('distractor', 27)] parse_ok True
+{'arm': 'distractor', 'N': 4} round 2 n_gold_cum 2 n_noise_cum 8 injected [('distractor', 42), ('distractor', 6), ('gold', None), ('distractor', 4), ('distractor', 41)] parse_ok True
+{'arm': 'distractor', 'N': 4} round 3 n_gold_cum 2 n_noise_cum 12 injected [('distractor', 18), ('distractor', 19), ('distractor', 11), ('distractor', 24)] parse_ok True
+{'arm': 'distractor', 'N': 4} round 4 n_gold_cum 2 n_noise_cum 16 injected [('distractor', 38), ('distractor', 25), ('distractor', 40), ('distractor', 22)] parse_ok True
+{'arm': 'distractor', 'N': 4} round 5 n_gold_cum 2 n_noise_cum 20 injected [('distractor', 35), ('distractor', 34), ('distractor', 50), ('distractor', 23)] parse_ok True
+{'arm': 'distractor', 'N': 4} round 6 n_gold_cum 2 n_noise_cum 24 injected [('distractor', 14), ('distractor', 32), ('distractor', 7), ('distractor', 16)] parse_ok True

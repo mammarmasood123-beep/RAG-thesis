@@ -1,0 +1,12 @@
+$ python -m data.build_pool --hotpot hotpot_dev_distractor_v1.json --out artifacts/
+========================================================================
+POOL VERIFICATION  (bm25_hotpot_corpus_top50)
+========================================================================
+questions in split                : 7405
+paragraph slots (questions x 10)  : 74050
+paragraph slots (actual count)    : 73700
+UNIQUE paragraph titles           : 66581
+  duplicate slots removed         : 7119 (9.7% of slots)
+  titles with >1 distinct text    : 54 (first occurrence kept)
+
+Indexing (title + paragraph text)...

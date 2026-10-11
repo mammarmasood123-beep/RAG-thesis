@@ -1,0 +1,7 @@
+numpy
+rank_bm25==0.2.2
+pyyaml
+matplotlib
+pytest
+# GPU box only:
+# vllm

@@ -1,0 +1,9 @@
+$ python -m harness.run_expA --config configs/pilot.yaml --backend stub --limit 20 --run_suffix=_runA
+[pilotA-stub-20261008T180538Z_runA] 20 questions, N=[0, 4], rounds 0..6
+  N=0 done (0s)
+  N=4 done (0s)
+wrote runs/pilotA-stub-20261008T180538Z_runA  records=260  not_fitting=0  status=OK
+  check n0_prompt_identity_violations: 0
+  check n0_output_identity_mismatches: 0
+  check gold_integrity_violations: 0
+[exit code 0]

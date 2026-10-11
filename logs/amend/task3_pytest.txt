@@ -1,0 +1,13 @@
+$ python -m pytest tests/ -q
+....................................ssss................................ [100%]
+68 passed, 4 skipped in 0.27s
+[exit code 0]
+
+$ python -m pytest tests/ -q -rs   # same run, showing skip reasons
+....................................ssss................................ [100%]
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_pool_amendment.py:139: real artifacts or dataset not present
+SKIPPED [1] tests/test_pool_amendment.py:151: real artifacts or dataset not present
+SKIPPED [1] tests/test_pool_amendment.py:162: real artifacts or dataset not present
+SKIPPED [1] tests/test_pool_amendment.py:172: real artifacts or dataset not present
+68 passed, 4 skipped in 0.26s

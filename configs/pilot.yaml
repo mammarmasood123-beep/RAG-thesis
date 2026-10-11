@@ -1,0 +1,43 @@
+# Experiment A pilot (Design00 Part III; pilot scope agreed 2026-10-07)
+experiment: A
+run_name: pilotA
+master_seed: 20261008
+
+paths:
+  sample: artifacts/sample.jsonl
+  pool: artifacts/pool.jsonl
+  paragraphs: artifacts/paragraphs.jsonl
+  runs_dir: runs
+
+sample_subset: pilot          # "pilot" (first 150) or "all" (500)
+n_levels: [0, 4]              # pilot; full study [0, 1, 2, 4]
+n_max: 4                      # fixes the nested draws; must not change between pilot and full study
+t_max: 6
+design_t_levels: [1, 2, 3, 4, 6]   # all of 1..6 are logged; these are the reported design levels
+rank_band: [1, 50]
+pool_type: bm25_hotpot_corpus_top50
+batch_size: 256               # questions per generate() call
+
+prompt_id: simrag_force_answer_noabstain
+log_prompts: true             # write the full user content per record to prompts.jsonl
+
+generator:
+  backend: stub               # "stub" on CPU; "vllm" on the A40
+  model: meta-llama/Meta-Llama-3-8B-Instruct
+  params: 8.03e9
+  dtype: float16
+  max_model_len: 8192
+  max_new_tokens: 256
+  temperature: 0.0
+  top_p: 1.0
+  seed: 0
+
+deviations_from_simrag:
+  - "Abstention sentence \"If unsure, respond with 'unsure.'\" removed from force_answer_prompt (Design00 VII.5)."
+  - "Greedy decoding (temperature 0); SIM-RAG samples at temperature 0.6, top_p 0.9."
+  - "Query call skipped; query slot in the context template is the empty string (retrieval bypassed)."
+  - "A round with zero injected paragraphs appends nothing; SIM-RAG would append an empty block."
+  - "No Critic; fixed rounds 0..6, no early stopping."
+  - "Unparseable output scored as empty answer; SIM-RAG uses the literal 'Answer not found'."
+  - "Distractors from BM25 top-50 over HotpotQA's own dev paragraph corpus (pilot limitation; full study uses full Wikipedia)."
+  - "Distractor draws nested across N (N=1 subset of N=2 subset of N=4 per round)."

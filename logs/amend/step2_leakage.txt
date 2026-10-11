@@ -1,0 +1,57 @@
+$ python -m logs.check_scripts.leakage_report runs/pilotA-stub-20261008T180538Z_runA
+====================================================================================================
+(i) stub run pilotA-stub-20261008T180538Z_runA
+====================================================================================================
+questions: 20; yes/no-answer questions skipped: 2
+N=0: injected distractors=0, applicable (non-yes/no)=0, record field contains_answer (whole-token, text only): 0/0 = n/a
+N=4: injected distractors=480, applicable (non-yes/no)=432, record field contains_answer (whole-token, text only): 0/432 = 0.0%
+
+====================================================================================================
+(ii) 500-question study sample (artifacts/sample.jsonl, seed 20261008), N=4, rounds 1-6, from pool
+====================================================================================================
+questions: 500; yes/no-answer questions skipped: 27; applicable: 473
+subset           distractors    whole-token (title+text)    plain substring (title+text)
+ALL                    11352              0/11352 = 0.0%                 41/11352 = 0.4%
+type=bridge             9600               0/9600 = 0.0%                  32/9600 = 0.3%
+type=comparison         1752               0/1752 = 0.0%                   9/1752 = 0.5%
+round=1                 1892               0/1892 = 0.0%                   5/1892 = 0.3%
+round=2                 1892               0/1892 = 0.0%                   5/1892 = 0.3%
+round=3                 1892               0/1892 = 0.0%                   9/1892 = 0.5%
+round=4                 1892               0/1892 = 0.0%                   5/1892 = 0.3%
+round=5                 1892               0/1892 = 0.0%                   4/1892 = 0.2%
+round=6                 1892               0/1892 = 0.0%                  13/1892 = 0.7%
+rank 1-10               2267               0/2267 = 0.0%                  12/2267 = 0.5%
+rank 11-25              3462               0/3462 = 0.0%                  12/3462 = 0.3%
+rank 26-50              5623               0/5623 = 0.0%                  17/5623 = 0.3%
+substring-only matches (not whole-token; let through by the filter): 41 in 22 questions
+  qid=5ab72d925542993667793f6e  answer='band'  distractor='New York City (Emigrate song)'
+  qid=5adcd28c5542994d58a2f6ea  answer='News Corp.'  distractor='21st Century Fox'
+  qid=5adcd28c5542994d58a2f6ea  answer='News Corp.'  distractor='News Corporation takeover bid for BSkyB'
+  qid=5a7a6ec05542990783324f49  answer='journal'  distractor='The Daily Howler'
+  qid=5a7a6ec05542990783324f49  answer='journal'  distractor='Deborah Elliott Deutschman'
+  qid=5adbdc8a55429944faac238e  answer='German'  distractor='List of people from Bremen'
+  qid=5abf1e825542997ec76fd3cb  answer='2004'  distractor='River Ridge District'
+  qid=5a7b241b554299042af8f705  answer='ibn Taymiyyah'  distractor='Le Statut des Moines'
+  qid=5adde73f5542992200553b94  answer='comic'  distractor='Spider-Man: Homecoming'
+  qid=5adde73f5542992200553b94  answer='comic'  distractor='The Amazing Spider-Man 2'
+  qid=5ae1f5a15542997f29b3c1b5  answer='1966'  distractor='Alan Young'
+  qid=5ab412da5542996a3a969f15  answer='eight'  distractor='Limbs of the horse'
+  qid=5ab412da5542996a3a969f15  answer='eight'  distractor='Trinacria'
+  qid=5a7758895542994aec3b729c  answer='rock'  distractor='Rocky Graziano'
+  qid=5a7758895542994aec3b729c  answer='rock'  distractor='The Rock-afire Explosion'
+  qid=5a7758895542994aec3b729c  answer='rock'  distractor='List of songs recorded by My Chemical Romance'
+  qid=5a7758895542994aec3b729c  answer='rock'  distractor='Ray Patterson (basketball)'
+  qid=5a7758895542994aec3b729c  answer='rock'  distractor='Explosions in the Sky'
+  qid=5a7365b155429901807db02a  answer='World War I'  distractor='HMS Seraph (P219)'
+  qid=5a7365b155429901807db02a  answer='World War I'  distractor='Timeline of the Holocaust'
+  qid=5a7365b155429901807db02a  answer='World War I'  distractor='HMS Illustrious (87)'
+  qid=5a7365b155429901807db02a  answer='World War I'  distractor='Rhone American Cemetery and Memorial'
+  qid=5a7365b155429901807db02a  answer='World War I'  distractor='Siping Campaign'
+  qid=5a7365b155429901807db02a  answer='World War I'  distractor='The Holocaust'
+  qid=5ae1367055429901ffe4adf3  answer='Timothy Dalton'  distractor='Licence to Kill'
+
+HARDNESS of drawn distractors, all 500 questions incl. yes/no, N=4 (12000 draws):
+  pool_rank : mean=25.41  median=25  max=50
+  bm25_rank : mean=26.59  median=26  p90=47  p99=55  max=241
+  bm25_rank - pool_rank : mean=1.18  draws with bm25_rank > 50: 293/12000 = 2.4%
+[exit code 0]

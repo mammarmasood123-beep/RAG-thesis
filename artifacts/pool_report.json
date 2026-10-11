@@ -1,0 +1,27 @@
+{
+  "pool_type": "bm25_hotpot_corpus_top50",
+  "hotpot_file": "hotpot_dev_distractor_v1.json",
+  "questions": 7405,
+  "slots": 73700,
+  "unique_titles": 66581,
+  "title_text_conflicts": 54,
+  "pool_size": 50,
+  "max_bm25_rank_cap": 300,
+  "answer_filter": "whole-token on title + text after normalize_answer (both sides); raw-lowercase whole-token fallback when normalize_answer(answer) is empty; skipped for yes/no; gold never screened",
+  "min_usable_required": 24,
+  "usable_min": 50,
+  "filter_applied": 6947,
+  "filter_skipped_yes_no": 458,
+  "removed_mean": 1.6207967589466576,
+  "removed_max": 208,
+  "questions_past_rank_50": 2405,
+  "max_bm25_rank_used": 258,
+  "shipped_recall_mean_after_filter": 0.7866131081359955,
+  "shipped_recall_mean_before_filter": 0.854408018624568,
+  "survivors_with_plain_substring_answer": 1704,
+  "raw_fallback_questions": [
+    "5ae4988655429970de88d9c1",
+    "5a8b3d795542997f31a41cc1"
+  ],
+  "bm25_crosscheck_max_diff": 0.0
+}

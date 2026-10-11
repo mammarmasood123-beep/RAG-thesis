@@ -1,0 +1,29 @@
+$ python -m logs.check_scripts.leakage_report runs/pilotA-stub-20261008T162923Z_runC
+==========================================================================================
+(i) stub run pilotA-stub-20261008T162923Z_runC
+==========================================================================================
+questions: 20; yes/no-answer questions skipped: 2
+N=0: injected distractors=0, applicable (non-yes/no)=0, contain answer: 0/0 = n/a
+N=4: injected distractors=480, applicable (non-yes/no)=432, contain answer: 11/432 = 2.5%
+      questions with >=1 answer-bearing distractor: 2/18  {'5a8b7e9c5542995d1e6f13c1': 9, '5ab72d925542993667793f6e': 2}
+
+==========================================================================================
+(ii) 500-question study sample (artifacts/sample.jsonl, seed 20261008), N=4, rounds 1-6, from pool
+==========================================================================================
+questions: 500; yes/no-answer questions skipped: 27; applicable: 473
+subset           distractors    contain answer (whole-token)         plain substring
+ALL                    11352                313/11352 = 2.8%        371/11352 = 3.3%
+type=bridge             9600                 181/9600 = 1.9%         211/9600 = 2.2%
+type=comparison         1752                 132/1752 = 7.5%         160/1752 = 9.1%
+round=1                 1892                  51/1892 = 2.7%          65/1892 = 3.4%
+round=2                 1892                  50/1892 = 2.6%          62/1892 = 3.3%
+round=3                 1892                  50/1892 = 2.6%          59/1892 = 3.1%
+round=4                 1892                  51/1892 = 2.7%          59/1892 = 3.1%
+round=5                 1892                  56/1892 = 3.0%          62/1892 = 3.3%
+round=6                 1892                  55/1892 = 2.9%          64/1892 = 3.4%
+rank 1-10               2267                 137/2267 = 6.0%         152/2267 = 6.7%
+rank 11-25              3462                  80/3462 = 2.3%          95/3462 = 2.7%
+rank 26-50              5623                  96/5623 = 1.7%         124/5623 = 2.2%
+questions with >=1 answer-bearing distractor among their 24: 117/473 = 24.7%
+distribution of answer-bearing distractors per question (10 = 10+): {0: 356, 1: 61, 2: 20, 3: 12, 4: 4, 5: 6, 6: 4, 7: 2, 9: 3, 10: 5}
+[exit code 0]

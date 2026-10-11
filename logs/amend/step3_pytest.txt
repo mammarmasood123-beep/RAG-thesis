@@ -1,0 +1,14 @@
+$ python -m pytest tests/ -q
+........................................................................ [ 96%]
+...                                                                      [100%]
+75 passed in 32.57s
+[exit code 0]
+
+$ python -m pytest tests/ -q -rs -k artifact -v   # the 4 real-pool tests, by name
+====================== 4 passed, 71 deselected in 31.41s =======================
+$ python -m pytest tests/test_pool_amendment.py -v -k artifact
+tests/test_pool_amendment.py::test_artifact_a_no_candidate_contains_answer PASSED [ 25%]
+tests/test_pool_amendment.py::test_artifact_b_gold_untouched PASSED      [ 50%]
+tests/test_pool_amendment.py::test_artifact_c_yes_no_unfiltered PASSED   [ 75%]
+tests/test_pool_amendment.py::test_artifact_d_ranks_consistent_and_50_each PASSED [100%]
+====================== 4 passed, 13 deselected in 31.20s =======================

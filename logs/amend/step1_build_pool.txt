@@ -1,0 +1,36 @@
+$ python -m data.build_pool --hotpot hotpot_dev_distractor_v1.json --out artifacts/
+========================================================================
+POOL VERIFICATION  (bm25_hotpot_corpus_top50, III.5 answer exclusion)
+========================================================================
+questions in split                : 7405
+paragraph slots (questions x 10)  : 74050
+paragraph slots (actual count)    : 73700
+UNIQUE paragraph titles           : 66581
+  duplicate slots removed         : 7119 (9.7% of slots)
+  titles with >1 distinct text    : 54 (first occurrence kept)
+answer filter                     : whole-token on title + text after normalize_answer (both sides); raw-lowercase whole-token fallback when normalize_answer(answer) is empty; skipped for yes/no; gold never screened
+pool size / scan cap              : 50 survivors / bm25_rank <= 300
+
+Indexing (title + paragraph text)...
+fast scorer vs rank_bm25.get_scores, max |diff| on 3 queries: 0.00e+00
+Scoring every question...
+
+5 random questions (seed 20261008): survivors after gold + answer exclusion
+  5ab56e085542992aa134a315  [bridge    ] usable=50  removed=  0  max_bm25_rank= 50  filter=on   answer='1967'
+  5a8530cc5542992a431d1aeb  [bridge    ] usable=50  removed=  0  max_bm25_rank= 50  filter=on   answer='Orono'
+  5abe9f7d5542997ec76fd331  [bridge    ] usable=50  removed=  0  max_bm25_rank= 50  filter=on   answer='Swansea City'
+  5a76cb9b55429966f1a36bf2  [bridge    ] usable=50  removed=  0  max_bm25_rank= 50  filter=on   answer='Adam Silver'
+  5a7455eb55429979e2882908  [bridge    ] usable=50  removed=  0  max_bm25_rank= 50  filter=on   answer='The Galtür avalanche'
+
+WHOLE SPLIT (7405 questions)
+  usable candidates (survivors)     : min=50  median=50  questions with < 50: 0  with < 24: 0
+  filter applied / skipped (yes/no) : 6947 / 458
+  candidates removed per question   : mean=1.62  max=208  questions with >=1 removed: 2405
+  questions needing bm25_rank > 50  : 2405  max bm25_rank used: 258
+  shipped-8 recovered in pool       : mean 78.7% after filter (before filter: 85.4%)
+  survivors still containing the answer as a PLAIN SUBSTRING (title+text, audit only): 1704
+  raw-lowercase fallback used (normalize_answer empty): 2 [('5ae4988655429970de88d9c1', 'The The', 'the the'), ('5a8b3d795542997f31a41cc1', '!!!', '!!!')]
+
+PASS: every question has 50 survivors (>= 24 required).
+wrote artifacts/pool.jsonl, artifacts/paragraphs.jsonl, artifacts/pool_report.json
+[exit code 0, elapsed 142s]

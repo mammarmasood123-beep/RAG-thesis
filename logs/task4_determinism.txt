@@ -1,0 +1,32 @@
+$ python -m harness.run_expA --config configs/pilot.yaml --backend stub --limit 20 --run_suffix=_runB
+[pilotA-stub-20261008T162810Z_runB] 20 questions, N=[0, 4], rounds 0..6
+  N=0 done (0s)
+  N=4 done (0s)
+wrote runs/pilotA-stub-20261008T162810Z_runB  records=260  not_fitting=0  status=OK
+  check n0_prompt_identity_violations: 0
+  check n0_output_identity_mismatches: 0
+  check gold_integrity_violations: 0
+[exit code 0]
+
+$ python -m logs.check_scripts.diff_runs runs/pilotA-stub-20261008T162726Z_runA runs/pilotA-stub-20261008T162810Z_runB
+A = pilotA-stub-20261008T162726Z_runA: 260 lines
+B = pilotA-stub-20261008T162810Z_runB: 260 lines
+ignored field run_id: A=['pilotA-stub-20261008T162726Z_runA'] B=['pilotA-stub-20261008T162810Z_runB']
+line-count equal: True
+fields that differ besides run_id: NONE
+prompts.jsonl byte-identical: True
+
+$ diff <(sed 's/"run_id": "[^"]*"//' runs/pilotA-stub-20261008T162726Z_runA/records.jsonl) <(sed 's/"run_id": "[^"]*"//' runs/pilotA-stub-20261008T162810Z_runB/records.jsonl) | wc -l
+0
+
+$ raw diff of records.jsonl, first 2 differing lines (shows run_id is the only change):
+1,260c1,260
+< {"run_id": "pilotA-stub-20261008T162726Z_runA", "config_hash": "a5cf0f766ccbd960132f1dc7a628eb7c80d00c755fa58df94aaa0871bc020032", "experiment": "A", "conditi
+< {"run_id": "pilotA-stub-20261008T162726Z_runA", "config_hash": "a5cf0f766ccbd960132f1dc7a628eb7c80d00c755fa58df94aaa0871bc020032", "experiment": "A", "conditi
+< {"run_id": "pilotA-stub-20261008T162726Z_runA", "config_hash": "a5cf0f766ccbd960132f1dc7a628eb7c80d00c755fa58df94aaa0871bc020032", "experiment": "A", "conditi
+
+$ sha256 of other run files:
+24622754dbfc00e158d9fbc290ca5f19f1bda979c5835d980808dda8cc10aab3  runs/pilotA-stub-20261008T162726Z_runA/prompts.jsonl
+24622754dbfc00e158d9fbc290ca5f19f1bda979c5835d980808dda8cc10aab3  runs/pilotA-stub-20261008T162810Z_runB/prompts.jsonl
+d6560ec3528c205b7196aea1e5f9c6ef5188f208bbe43b4ec4dcf0fc478f2b50  runs/pilotA-stub-20261008T162726Z_runA/manifest.json
+4194eae6267a3a4a06efab70018329d0848a16280dda29c9be864a0126e26f10  runs/pilotA-stub-20261008T162810Z_runB/manifest.json

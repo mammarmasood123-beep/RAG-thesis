@@ -1,0 +1,24 @@
+$ python -m harness.run_expA --config configs/pilot.yaml --backend stub --limit 20 --run_suffix=_runB
+[pilotA-stub-20261008T180749Z_runB] 20 questions, N=[0, 4], rounds 0..6
+  N=0 done (0s)
+  N=4 done (0s)
+wrote runs/pilotA-stub-20261008T180749Z_runB  records=260  not_fitting=0  status=OK
+  check n0_prompt_identity_violations: 0
+  check n0_output_identity_mismatches: 0
+  check gold_integrity_violations: 0
+[exit code 0]
+
+$ wc -l records.jsonl (runA, runB)
+260
+260
+
+$ python -m logs.check_scripts.diff_runs runs/pilotA-stub-20261008T180538Z_runA runs/pilotA-stub-20261008T180749Z_runB
+A = pilotA-stub-20261008T180538Z_runA: 260 lines
+B = pilotA-stub-20261008T180749Z_runB: 260 lines
+ignored field run_id: A=['pilotA-stub-20261008T180538Z_runA'] B=['pilotA-stub-20261008T180749Z_runB']
+line-count equal: True
+fields that differ besides run_id: NONE
+prompts.jsonl byte-identical: True
+
+$ diff <(sed 's/"run_id": "[^"]*"//' runs/pilotA-stub-20261008T180538Z_runA/records.jsonl) <(sed 's/"run_id": "[^"]*"//' runs/pilotA-stub-20261008T180749Z_runB/records.jsonl) | wc -l
+0

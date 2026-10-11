@@ -1,0 +1,29 @@
+$ python -m data.build_pool --hotpot hotpot_dev_distractor_v1.json --out artifacts/
+========================================================================
+POOL VERIFICATION  (bm25_hotpot_corpus_top50)
+========================================================================
+questions in split                : 7405
+paragraph slots (questions x 10)  : 74050
+paragraph slots (actual count)    : 73700
+UNIQUE paragraph titles           : 66581
+  duplicate slots removed         : 7119 (9.7% of slots)
+  titles with >1 distinct text    : 54 (first occurrence kept)
+
+Indexing (title + paragraph text)...
+fast scorer vs rank_bm25.get_scores, max |diff| on 3 queries: 0.00e+00
+Scoring every question...
+
+5 random questions (seed 20261008): usable rank 1-50 candidates after excluding gold titles
+  5ab56e085542992aa134a315  [bridge    ] usable=50  score r1=47.23 r50=33.13
+  5a8530cc5542992a431d1aeb  [bridge    ] usable=50  score r1=46.83 r50=39.65
+  5abe9f7d5542997ec76fd331  [bridge    ] usable=50  score r1=35.17 r50=25.11
+  5a76cb9b55429966f1a36bf2  [bridge    ] usable=50  score r1=69.22 r50=47.14
+  5a7455eb55429979e2882908  [bridge    ] usable=50  score r1=64.74 r50=10.05
+
+WHOLE SPLIT: usable candidates  min=50  p1=50  median=50  questions with < 50: 0
+shipped-8 distractors recovered in BM25 top-50: mean 85.4% (sanity check: HotpotQA built them with bigram tf-idf)
+questions with < 24 usable: 0
+
+PASS: every question has >= 24 usable candidates.
+wrote artifacts/pool.jsonl, artifacts/paragraphs.jsonl, artifacts/pool_report.json
+[exit code 0, elapsed 89s]

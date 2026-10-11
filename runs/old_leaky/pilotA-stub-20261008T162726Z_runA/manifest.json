@@ -1,0 +1,122 @@
+{
+  "run_id": "pilotA-stub-20261008T162726Z_runA",
+  "status": "OK",
+  "config_hash": "a5cf0f766ccbd960132f1dc7a628eb7c80d00c755fa58df94aaa0871bc020032",
+  "config": {
+    "experiment": "A",
+    "run_name": "pilotA",
+    "master_seed": 20261008,
+    "paths": {
+      "sample": "artifacts/sample.jsonl",
+      "pool": "artifacts/pool.jsonl",
+      "paragraphs": "artifacts/paragraphs.jsonl",
+      "runs_dir": "runs"
+    },
+    "sample_subset": "pilot",
+    "n_levels": [
+      0,
+      4
+    ],
+    "n_max": 4,
+    "t_max": 6,
+    "design_t_levels": [
+      1,
+      2,
+      3,
+      4,
+      6
+    ],
+    "rank_band": [
+      1,
+      50
+    ],
+    "pool_type": "bm25_hotpot_corpus_top50",
+    "batch_size": 256,
+    "prompt_id": "simrag_force_answer_noabstain",
+    "log_prompts": true,
+    "generator": {
+      "backend": "stub",
+      "model": "meta-llama/Meta-Llama-3-8B-Instruct",
+      "params": "8.03e9",
+      "dtype": "float16",
+      "max_model_len": 8192,
+      "max_new_tokens": 256,
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "seed": 0
+    },
+    "deviations_from_simrag": [
+      "Abstention sentence \"If unsure, respond with 'unsure.'\" removed from force_answer_prompt (Design00 VII.5).",
+      "Greedy decoding (temperature 0); SIM-RAG samples at temperature 0.6, top_p 0.9.",
+      "Query call skipped; query slot in the context template is the empty string (retrieval bypassed).",
+      "A round with zero injected paragraphs appends nothing; SIM-RAG would append an empty block.",
+      "No Critic; fixed rounds 0..6, no early stopping.",
+      "Unparseable output scored as empty answer; SIM-RAG uses the literal 'Answer not found'.",
+      "Distractors from BM25 top-50 over HotpotQA's own dev paragraph corpus (pilot limitation; full study uses full Wikipedia).",
+      "Distractor draws nested across N (N=1 subset of N=2 subset of N=4 per round)."
+    ]
+  },
+  "config_yaml": "# Experiment A pilot (Design00 Part III; pilot scope agreed 2026-10-07)\nexperiment: A\nrun_name: pilotA\nmaster_seed: 20261008\n\npaths:\n  sample: artifacts/sample.jsonl\n  pool: artifacts/pool.jsonl\n  paragraphs: artifacts/paragraphs.jsonl\n  runs_dir: runs\n\nsample_subset: pilot          # \"pilot\" (first 150) or \"all\" (500)\nn_levels: [0, 4]              # pilot; full study [0, 1, 2, 4]\nn_max: 4                      # fixes the nested draws; must not change between pilot and full study\nt_max: 6\ndesign_t_levels: [1, 2, 3, 4, 6]   # all of 1..6 are logged; these are the reported design levels\nrank_band: [1, 50]\npool_type: bm25_hotpot_corpus_top50\nbatch_size: 256               # questions per generate() call\n\nprompt_id: simrag_force_answer_noabstain\nlog_prompts: true             # write the full user content per record to prompts.jsonl\n\ngenerator:\n  backend: stub               # \"stub\" on CPU; \"vllm\" on the A40\n  model: meta-llama/Meta-Llama-3-8B-Instruct\n  params: 8.03e9\n  dtype: float16\n  max_model_len: 8192\n  max_new_tokens: 256\n  temperature: 0.0\n  top_p: 1.0\n  seed: 0\n\ndeviations_from_simrag:\n  - \"Abstention sentence \\\"If unsure, respond with 'unsure.'\\\" removed from force_answer_prompt (Design00 VII.5).\"\n  - \"Greedy decoding (temperature 0); SIM-RAG samples at temperature 0.6, top_p 0.9.\"\n  - \"Query call skipped; query slot in the context template is the empty string (retrieval bypassed).\"\n  - \"A round with zero injected paragraphs appends nothing; SIM-RAG would append an empty block.\"\n  - \"No Critic; fixed rounds 0..6, no early stopping.\"\n  - \"Unparseable output scored as empty answer; SIM-RAG uses the literal 'Answer not found'.\"\n  - \"Distractors from BM25 top-50 over HotpotQA's own dev paragraph corpus (pilot limitation; full study uses full Wikipedia).\"\n  - \"Distractor draws nested across N (N=1 subset of N=2 subset of N=4 per round).\"\n",
+  "n_questions": 20,
+  "n_records": 260,
+  "n_records_not_fitting_context": 0,
+  "max_prompt_tokens_by_N_round": {
+    "N=0|round=1": 324,
+    "N=0|round=2": 382,
+    "N=0|round=3": 382,
+    "N=0|round=4": 382,
+    "N=0|round=5": 382,
+    "N=0|round=6": 382,
+    "N=4|round=1": 884,
+    "N=4|round=2": 1587,
+    "N=4|round=3": 1966,
+    "N=4|round=4": 2598,
+    "N=4|round=5": 3060,
+    "N=4|round=6": 3480,
+    "N=None|round=0": 131
+  },
+  "checks": {
+    "n0_prompt_identity_violations": {
+      "count": 0,
+      "items": []
+    },
+    "n0_output_identity_mismatches": {
+      "count": 0,
+      "items": []
+    },
+    "gold_integrity_violations": {
+      "count": 0,
+      "items": []
+    }
+  },
+  "prompt": {
+    "id": "simrag_force_answer_noabstain",
+    "sha256": "18a227bc2385937cc28ccf6aa42cbc420dd11c103bd223b37d0b0fabc9923c4e"
+  },
+  "deviations_from_simrag": [
+    "Abstention sentence \"If unsure, respond with 'unsure.'\" removed from force_answer_prompt (Design00 VII.5).",
+    "Greedy decoding (temperature 0); SIM-RAG samples at temperature 0.6, top_p 0.9.",
+    "Query call skipped; query slot in the context template is the empty string (retrieval bypassed).",
+    "A round with zero injected paragraphs appends nothing; SIM-RAG would append an empty block.",
+    "No Critic; fixed rounds 0..6, no early stopping.",
+    "Unparseable output scored as empty answer; SIM-RAG uses the literal 'Answer not found'.",
+    "Distractors from BM25 top-50 over HotpotQA's own dev paragraph corpus (pilot limitation; full study uses full Wikipedia).",
+    "Distractor draws nested across N (N=1 subset of N=2 subset of N=4 per round)."
+  ],
+  "environment": {
+    "python": "3.13.16",
+    "platform": "Linux-6.18.44-fc-v80-x86_64-with-glibc2.39",
+    "numpy": "2.5.3",
+    "rank_bm25": null,
+    "torch": null,
+    "vllm": null,
+    "transformers": null,
+    "nvidia_smi": null
+  },
+  "elapsed_s": 0.1,
+  "inputs_sha256": {
+    "sample": "7a8d13398d1e755935905ba9f1fa9cbda710888a2cee8f3f5446c85007ec4023",
+    "pool": "d46921513e94af70d866816b32d946f3200a52983a7f637127256d18b0557c6f",
+    "paragraphs": "f621f33901ae72a4a980f70a59279ebe14dbd49f3defee0c51ffd18b587a4db1"
+  }
+}

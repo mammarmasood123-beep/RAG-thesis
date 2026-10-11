@@ -1,0 +1,11 @@
+$ python -m data.build_sample --hotpot hotpot_dev_distractor_v1.json --out artifacts/
+split: 7405 questions; eligible (2 gold in context): 7405; excluded: 0
+split types: {'comparison': 1487, 'bridge': 5918}
+sample  n=500  types={'bridge': 400, 'comparison': 100}  flipped=250
+pilot   n=150  types={'bridge': 120, 'comparison': 30}  flipped=75
+wrote artifacts/sample.jsonl
+[exit code 0]
+
+$ sha256sum artifacts/sample.jsonl
+7a8d13398d1e755935905ba9f1fa9cbda710888a2cee8f3f5446c85007ec4023  artifacts/sample.jsonl
+(previous sample sha256: 7a8d13398d1e755935905ba9f1fa9cbda710888a2cee8f3f5446c85007ec4023)
