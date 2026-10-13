@@ -62,6 +62,11 @@ def environment() -> dict:
     return env
 
 
+def prompt_fits(prompt_tokens: int, max_new_tokens: int, max_model_len: int) -> bool:
+    """Pre-generation gate: the prompt plus the full generation budget must fit the window."""
+    return prompt_tokens + max_new_tokens <= max_model_len
+
+
 def ratios(n_gold_cum, n_noise_cum, n_gold_round, n_noise_round):
     r_round = n_noise_round / (n_gold_round + n_noise_round) if (n_gold_round + n_noise_round) else None
     tot = n_gold_cum + n_noise_cum
@@ -95,7 +100,7 @@ class Runner:
         pt = self.gen.count_prompt_tokens(msgs)
         g = self.cfg["generator"]
         return {"row": row, "msgs": msgs, "user": user_content, "prompt_tokens": pt,
-                "fits": pt + g["max_new_tokens"] <= g["max_model_len"],
+                "fits": prompt_fits(pt, g["max_new_tokens"], g["max_model_len"]),
                 "meta": {"qid": row["qid"], "gold_answer": row["answer"],
                          "gold_titles": row["gold_titles_canonical"]}}
 
@@ -104,6 +109,11 @@ class Runner:
         row, g, res = job["row"], self.cfg["generator"], job.get("result")
         n_gold_cum, n_noise_cum, n_gold_r, n_noise_r = ctx_counts
         r_round, r_cum = ratios(n_gold_cum, n_noise_cum, n_gold_r, n_noise_r)
+        if res is not None and self.gen.backend == "vllm" and res.input_tokens != job["prompt_tokens"]:
+            # Hard check: the count the fits gate used must equal the engine's len(prompt_token_ids).
+            raise RuntimeError(
+                f"prompt token count mismatch: qid={row['qid']} round={rnd} N={condition['N']} "
+                f"count_prompt_tokens={job['prompt_tokens']} vllm_prompt_token_ids={res.input_tokens}")
         if res is not None:
             ans, rat, ok = parse_reasoner_output(res.text)
             module = {"module": "reasoner_answer", "calls": 1, "params": self.gen.params,

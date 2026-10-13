@@ -27,6 +27,15 @@ class GenResult:
     wall_source: str          # "vllm_request_metrics" | "batch_wall_div_n" | "stub"
 
 
+def count_chat_tokens(tokenizer, messages: list[dict]) -> int:
+    """Prompt tokens as the engine will see them, independent of the transformers version.
+    transformers 5.x returns a BatchEncoding from apply_chat_template(tokenize=True), whose len()
+    is 2, so render the template to text and count encode(text, add_special_tokens=False).
+    The chat template already contains <|begin_of_text|>, so no special tokens are added."""
+    text = tokenizer.apply_chat_template(messages, add_generation_prompt=True, tokenize=False)
+    return len(tokenizer.encode(text, add_special_tokens=False))
+
+
 class StubGenerator:
     backend = "stub"
     model = "oracle-stub"
@@ -81,7 +90,7 @@ class VLLMGenerator:
         self.sampling = SamplingParams(temperature=0.0, top_p=1.0, max_tokens=max_new_tokens, seed=seed)
 
     def count_prompt_tokens(self, messages: list[dict]) -> int:
-        return len(self.tokenizer.apply_chat_template(messages, add_generation_prompt=True, tokenize=True))
+        return count_chat_tokens(self.tokenizer, messages)
 
     def count_text_tokens(self, text: str) -> int:
         return len(self.tokenizer.encode(text, add_special_tokens=False))
